@@ -6,7 +6,7 @@ import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 
 /**
- * @author grakstenov
+ * @author gkrastenov
  * @title Airdrop
  * @notice Contract to handle ERC20 token airdrop claims using Merkle proofs.
  */
@@ -61,7 +61,7 @@ contract Airdrop is Ownable {
         if (_proof.length == 0) revert InvalidProofLength();
 
         bytes32 leaf = keccak256(abi.encodePacked(_account, _amount));
-        if (!claimed[leaf]) revert AlreadyClaimed();
+        if (claimed[leaf]) revert AlreadyClaimed();
 
         bool verified = MerkleProof.verifyCalldata(_proof, merkleRoot, leaf);
         if (!verified) revert InvalidProof();
