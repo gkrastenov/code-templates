@@ -26,7 +26,7 @@ contract Airdrop is Ownable {
     error CanNotReclaimed();
 
     event Claimed(address account, uint256 amount);
-    event RootUpdated(bytes32 merkleRoot);
+    event MerkleRootUpdated(bytes32 merkleRoot);
 
     constructor(
         address _token,
